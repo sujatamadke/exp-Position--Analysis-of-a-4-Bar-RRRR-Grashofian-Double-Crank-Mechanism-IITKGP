@@ -1,18 +1,18 @@
-## Introduction
-
-<div align="center">
-<img src="experiment/images/iitkgp.png" width="10%">
-</div>
-
-<b>Discipline | <b> Mechanical Engineering 
-:--|:--|
-<b> Lab | <b> **Mechanisms and Robotics Lab**
-<b> Experiment|     <b> **Movemaster and Experiment 1**
+## References
+#### Books
+- 
+-
+-
 
 
-### About the Experiment 
+#### Papers
+- 
+- 
+- 
+-  
 
-<!--Fill a brief description of this experiment here-->
+
+# People
 
 <b>Name of Developer | <b> **Prof. C S Kumar**
 :--|:--|
@@ -22,7 +22,7 @@
 <b>Webpage| <b> [http://facweb.iitkgp.ernet.in/~cskumar/](http://facweb.iitkgp.ernet.in/~cskumar/)
 
 
-### Contributors List
+## Contributors list
 
 SrNo | Name | VLabs Developer or Integration Engineer | Designation | Department| Institute
 :--|:--|:--|:--|:--|:--|
