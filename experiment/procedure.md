@@ -44,6 +44,7 @@ The Drawing board applet will open when you click the image below. A new browser
 [Java Script Simulator](http://vlabs.iitkgp.ac.in/kdm/exp1/drawing-board-js/drawing-board.html)
 
 To get an animated guidance of the graphical analysis using the applet click below:
+
 [How to use the Drawing Board to find coupler position](http://vlabs.iitkgp.ac.in/kdm/exp1/drawing-board-js/drawing-board.html)
 Validate your answer using the applet below.
 Validate Graphical Analysis for Coupler Position for a Grashofian RRRRR Double Crank Linkage
