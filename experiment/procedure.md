@@ -20,3 +20,48 @@ Animation of a 4 Bar Double Crank
 
 ### Instruments
 Choose link lengths, preferably keeping them within 10 units length for easy viewing of animations. Enter them and a coupler arm length and orientation of your choice in the following applet in the designated text boxes. Link 1 represents the ground link. Press the Enter button to verify if your data conforms to a Grashofian Double Crank. Note that coupler arm length and orientation play no role in Grashof's criteria, but you are merely asked to enter them for use in later stages. In case you get a message stating that your data does not conform to a Grashofian Double Crank, have a re look at the summary of Grashof's criteria provided in the Introduction tab and review and re enter your data.
+
+Check if a linkage is a Grashofian RRRR Double Crank mechanism
+Link Length 1 (Ground) : 
+
+Link Length 2 (Crank) : 
+
+Link Length 3 (Coupler) : 
+
+Link Length 4 (Follower) : 
+
+Coupler Arm Length : 
+
+Coupler Arm Orientation (in degrees) : 
+
+
+Once your link lengths are validated, you can use the Drawing Board applet for graphical position analysis of your chosen linkage.
+
+The Drawing board applet will open when you click the image below. A new browser window will open along with the applet. Since the linkage is a double crank, all values of crank angle are permissible. Find the location of the coupler point for any crank input angle you choose. The applet uses screen coordinates for drawing. Hence if you are using link lengths between 1 to 10 units it is advisable (although zoom is available for the applet) to choose a scale between 100:1 to 10:1 for easy on screen use.
+
+<img src="images/drawing-board.png" width="100%">
+
+[Java Script Simulator](http://vlabs.iitkgp.ac.in/kdm/exp1/drawing-board-js/drawing-board.html)
+
+To get an animated guidance of the graphical analysis using the applet click below:
+[How to use the Drawing Board to find coupler position](http://vlabs.iitkgp.ac.in/kdm/exp1/drawing-board-js/drawing-board.html)
+Validate your answer using the applet below.
+Validate Graphical Analysis for Coupler Position for a Grashofian RRRRR Double Crank Linkage
+Link Length 1 (Ground) : 
+
+Link Length 2 (Crank) : 
+
+Link Length 3 (Coupler) : 
+
+Link Length 4 (Follower) : 
+
+Coupler Arm Length : 
+
+Coupler Arm Orientation (in degrees) : 
+
+Coupler X Obtained Graphically: 
+
+Coupler Y Obtained Graphically: 
+
+Crank Orientation (in degrees) : 
+
