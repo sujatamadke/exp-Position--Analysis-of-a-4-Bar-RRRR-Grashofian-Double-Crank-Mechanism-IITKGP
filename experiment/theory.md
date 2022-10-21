@@ -3,7 +3,6 @@ The 4 bar RRRR mechanism is forms the basis of any study on mechanism. It is wid
 
 <div align="centre">
  <img src="images/4_bar_RRRR_simulator.gif" width="50%">
-
  <figcaption>Schematic Diagram of a 4 Bar RRRR Linkage</figcaption>
 </div>
 
