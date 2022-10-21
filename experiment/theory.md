@@ -1,7 +1,7 @@
 ### Introduction
 The 4 bar RRRR mechanism is forms the basis of any study on mechanism. It is widely used in various forms because of the relative simplicity of design and manufacture as well as durability. Grashof's criteria is used to distinguish between 4 bar RRRR linkages depending on the rotatability of the individual links of a 4 bar mechanism. In brief, if l is the longest link, s the longest link and the other two links have length p and q then the following cases arise
 
- <img src="images/4_bar_RRRR_simulator.gif" width="50%">
+ <img align="centre"src="images/4_bar_RRRR_simulator.gif" width="50%">
  <figcaption>Schematic Diagram of a 4 Bar RRRR Linkage</figcaption>
 
 - l + s < p + q   :  Grashofian Linkage
