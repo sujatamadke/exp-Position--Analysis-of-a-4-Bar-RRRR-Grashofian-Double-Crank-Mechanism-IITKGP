@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script language="JavaScript" type="text/javascript">
+function checkGrashof() {
+
+    var l1 = document.getElementById("ground").value;
+    var l2 = document.getElementById("crank").value;
+    var l3 = document.getElementById("coupler").value;
+    var l4 = document.getElementById("follower").value;
+    var l5 = document.getElementById("coupler_length").value;
+    var theta5 = document.getElementById("coupler_angle").value;
+       
+	var lmin, lmax;
+	lmin=10000000;
+	lmax=-10000000;
+	var doublecrank=-1;
+	var cgFlag=false;
+	
+	if ((l1<=l2) && (l1<=l3) && (l1<=l4))
+	{
+		lmin=l1;
+	}
+	if ((l2<=l1) && (l2<=l3) && (l2<=l4))
+	{
+		lmin=l2;
+	}
+	if ((l3<=l2) && (l3<=l4) && (l3<=l1))
+	{
+		lmin=l3;
+	}
+	if ((l4<=l1) && (l4<=l2) && (l4<=l3))
+	{
+		lmin=l4;
+	}
+	if (lmin!=l1)
+	{
+ 		cgFlag=false;
+	}
+	if (lmin==l1)
+	{
+		doublecrank=1;
+	}
+
+	if ((l1>=l2) && (l1>=l3) && (l1>=l4))
+	{
+		lmax=l1;
+	}
+	if ((l2>=l1) && (l2>=l3) && (l2>=l4))
+	{
+		lmax=l2;
+	}
+	if ((l3>=l2) && (l3>=l4) && (l3>=l1))
+	{
+		lmax=l3;
+	}
+	if ((l4>=l1) && (l4>=l2) && (l4>=l3))
+	{
+		lmax=l4;
+	}
+	
+	var Grashof=-1;
+	var p=0; var q=0;
+
+	if ((lmax==l1) && (lmin==l2)) {p=l3; q=l4;}
+	if ((lmax==l1) && (lmin==l3)) {p=l2; q=l4;}
+	if ((lmax==l1) && (lmin==l4)) {p=l2; q=l3;}
+	if ((lmax==l2) && (lmin==l3)) {p=l1; q=l4;}
+	if ((lmax==l2) && (lmin==l4)) {p=l1; q=l3;}
+	if ((lmax==l2) && (lmin==l1)) {p=l3; q=l4;}
+	if ((lmax==l3) && (lmin==l4)) {p=l1; q=l2;}
+	if ((lmax==l3) && (lmin==l1)) {p=l2; q=l4;}
+	if ((lmax==l3) && (lmin==l2)) {p=l1; q=l4;}
+	if ((lmax==l4) && (lmin==l1)) {p=l3; q=l2;}
+	if ((lmax==l4) && (lmin==l2)) {p=l3; q=l1;}
+	if ((lmax==l4) && (lmin==l3)) {p=l1; q=l2;}
+
+	
+	if ( lmax*1+lmin*1 < p*1+q*1)
+	{
+			Grashof=1;
+            document.getElementById("grashof_type").innerHTML = "Link lengths are for Grashofian linkage";
+	}
+	if (Grashof!=1)
+	{
+            document.getElementById("grashof_type").innerHTML = "Link lengths are for Non Grashofian linkage";
+		cgFlag=false;
+	}
+	if(doublecrank==1 && Grashof==1){
+            document.getElementById("mechanism_type").innerHTML = "Mechanism is a Grashofian Double Crank";
+		cgFlag=true;
+	}        
+	if(doublecrank!=1 || Grashof!=1){
+            document.getElementById("mechanism_type").innerHTML = "Mechanism is a not a Grashofian Double Crank";
+		cgFlag=true;
+	}    
+	if(doublecrank!=1 && Grashof==1){
+            document.getElementById("mechanism_type").innerHTML = "Mechanism is not a Grashofian Double Crank";
+		if (lmin!=l1)
+		{
+			   document.getElementById("mechanism_type").innerHTML += ". Ground link must be smallest for Double Crank";
+		}
+		cgFlag=true;
+	}    
+}
+
+</script>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style2 {font-family: Verdana, Arial, Helvetica, sans-serif}
+-->
+</style>
+</head>
+<body>
+<label></label>
+<label><span class="style1">Check if a linkage is a Grashofian RRRR Double Crank mechanism </span><span class="style2"><br />
+Link Length 1 (Ground) :
+<input type="number" id="ground" >
+<br />
+Link Length 2 (Crank) :
+<input type="number" id="crank" />
+<br />
+</span></label>
+<span class="style2">
+<label>Link Length 3 (Coupler) :
+<input type="number" id="coupler" />
+</label>
+<label><br />
+Link Length 4 (Follower) :
+<input type="number" id="follower" />
+</label>
+<label><br />
+Coupler Arm Length :
+<input type="number" id="coupler_length" />
+</label>
+<label><br />
+Coupler Arm Orientation (in degrees) :
+<input type="number" id="coupler_angle" />
+<br />
+<input type="submit" id="Submit" onclick="checkGrashof()" value="Check" />
+</label>
+</span>
+<p><label></label>
+</p>
+<p id="grashof_type"></p>
+<p id="mechanism_type"></p>
+</body>
+</html>

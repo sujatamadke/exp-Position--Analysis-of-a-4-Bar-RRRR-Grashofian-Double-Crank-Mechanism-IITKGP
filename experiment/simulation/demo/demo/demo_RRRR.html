@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--------------------style---------------------------------->        
+        <link rel="stylesheet" type="text/css" href="./css/style.css">        
+
+        <!---------------------javascript library------------------------------->
+        <script type="text/javascript" src="../lib/js/threejs/three.min.js"></script>
+        <script type="text/javascript" src="../lib/js/threejs/TrackballControls.js"></script>
+        <script type="text/javascript" src="../lib/js/threejs/Detector.js"></script>
+        <script type="text/javascript" src="../lib/js/threejs/stats.min.js"></script> 
+
+        <!---------------------scene and controller------------------------------->
+        <script type="text/javascript" src="./js/axis.js"></script>
+        <script type="text/javascript" src="./js/scene.js"></script>
+        <script type="text/javascript" src="./js/controller.js"></script>
+        <!---------------------Kinematics------------------------------->
+        <script type="text/javascript" src="./js/kinematics.js"></script>
+
+    </head>
+    <body>
+        <div id="main-wrapper">
+            <h2>Double Crank </h2>
+            <div id="canvas3d-controller-wrapper">
+                <div id="canvas3d-wrapper">
+                    <div id="canvas3d-title">Example</div>            
+                    <div id="canvas3d-view"></div>
+					<div class="clearfix"></div>           
+                </div>
+                <div id="controller-wrapper">
+                    <div class="contDiv"><button id="b1" onClick="left_button()">Anticlockwise</button></div> 
+                    <div class="contDiv"><input id="slider1" type="range" min="-360" max="360" step="10" value="0" oninput="sliderChange()"></div>
+                    <div class="contDiv"><button id="b2" onClick="right_button()">Clockwise</button></div>
+					<div class="clearfix"></div>
+                </div><!-- end of controller-wrapper -->
+            </div><!-- end of canvas3d-controller-wrapper -->
+        </div><!-- end of main-wrapper -->
+    </body>
+</html>

@@ -1,0 +1,273 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>Kinematics and Dynamics of Mechanism</title> 
+
+        <!--
+                1 ) Reference to the files containing the JavaScript and CSS.
+                These files must be located on your server.
+        --> 
+
+        <script type="text/javascript" src="./js/highslide-full.js"></script> 
+        <link rel="stylesheet" type="text/css" href="./css/highslide.css" /> 
+        <!--[if lt IE 7]>
+        <link rel="stylesheet" type="text/css" href="../highslide/highslide-ie6.css" />
+        <![endif]--> 
+
+
+
+        <!--
+            2) Optionally override the settings defined at the top
+            of the highslide.js file. The parameter hs.graphicsDir is important!
+            Add the slideshow and do some adaptations to this example.
+        --> 
+
+        <script type="text/javascript">
+            //<![CDATA[
+            hs.graphicsDir = 'graphics/';
+            hs.transitions = ['expand', 'crossfade'];
+            hs.restoreCursor = null;
+            hs.lang.restoreTitle = 'Click for next image';
+            hs.captionOverlay.position = 'leftpanel';
+
+            // Add the slideshow providing the controlbar and the thumbstrip
+            hs.addSlideshow({
+                //slideshowGroup: 'group1',
+                interval: 5000,
+                repeat: true,
+                useControls: true,
+                overlayOptions: {
+                    position: 'bottom right',
+                    offsetY: 50
+                },
+                thumbstrip: {
+                    position: 'above',
+                    mode: 'horizontal',
+                    relativeTo: 'expander'
+                }
+            });
+
+            // Options for the in-page items
+            var inPageOptions = {
+                //slideshowGroup: 'group1',
+                outlineType: null,
+                allowSizeReduction: false,
+                wrapperClassName: 'in-page controls-in-heading',
+                thumbnailId: 'gallery-area',
+                useBox: true,
+                width: 600,
+                height: 400,
+                targetX: 'gallery-area 10px',
+                targetY: 'gallery-area 10px',
+                captionEval: 'this.a.title',
+                numberPosition: 'caption'
+            }
+
+            // Open the first thumb on page load
+            hs.addEventListener(window, 'load', function () {
+                document.getElementById('thumb1').onclick();
+            });
+
+            // Cancel the default action for image click and do next instead
+            hs.Expander.prototype.onImageClick = function () {
+                if (/in-page/.test(this.wrapper.className))
+                    return hs.next();
+            }
+
+            // Under no circumstances should the static popup be closed
+            hs.Expander.prototype.onBeforeClose = function () {
+                if (/in-page/.test(this.wrapper.className))
+                    return false;
+            }
+            // ... nor dragged
+            hs.Expander.prototype.onDrag = function () {
+                if (/in-page/.test(this.wrapper.className))
+                    return false;
+            }
+
+            // Keep the position after window resize
+            hs.addEventListener(window, 'resize', function () {
+                var i, exp;
+                hs.getPageSize();
+
+                for (i = 0; i < hs.expanders.length; i++) {
+                    exp = hs.expanders[i];
+                    if (exp) {
+                        var x = exp.x,
+                                y = exp.y;
+
+                        // get new thumb positions
+                        exp.tpos = hs.getPosition(exp.el);
+                        x.calcThumb();
+                        y.calcThumb();
+
+                        // calculate new popup position
+                        x.pos = x.tpos - x.cb + x.tb;
+                        x.scroll = hs.page.scrollLeft;
+                        x.clientSize = hs.page.width;
+                        y.pos = y.tpos - y.cb + y.tb;
+                        y.scroll = hs.page.scrollTop;
+                        y.clientSize = hs.page.height;
+                        exp.justify(x, true);
+                        exp.justify(y, true);
+
+                        // set new left and top to wrapper and outline
+                        exp.moveTo(x.pos, y.pos);
+                    }
+                }
+            });
+            //]]>
+        </script> 
+
+        <!--
+                3) Modify some of the styles
+        --> 
+        <style type="text/css"> 
+            .highslide-image {
+                border: 1px solid black;
+            }
+            .highslide-controls {
+                width: 90px !important;
+            }
+            .highslide-controls .highslide-close {
+                display: none;
+            }
+            .highslide-caption {
+                padding: .5em 0;
+            }
+        </style> 
+
+    </head> 
+
+    <body> 
+
+        <!--
+                4)	Div where the gallery appears
+        --> 
+
+        <div id="gallery-area" style="width: 620px; height: 580px; margin: 0 auto; border: 1px solid silver"> 
+
+            <!--
+                    5)	Put all the thumbnails inside a hidden div where Highslide can index them to
+                            create the slideshow.
+            --> 
+
+            <div class="hidden-container"> 
+                <!--
+                        6) This is how you mark up the thumbnail images with an anchor tag around it.
+                        The anchor's href attribute defines the URL of the full-size image. Given the captionEval
+                        option is set to 'this.a.title', the caption is grabbed from the title attribute of
+                        the anchor.
+                --> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_01.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="This is what appears in the browser window when the applet has loaded"> 
+                    <img src='images/Drawing_Board_RRRR_01.gif' alt=''/></a> 
+
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_02.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Clicking on the show grid and show axes checkboxes shows the grid and axes"> 
+                    <img src='images/Drawing_Board_RRRR_02.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_03.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The menu palette can be dragged to a convenient location by left clicking on it with the mouse and dragging the mouse while keeping the left key pressed"> 
+                    <img src='images/Drawing_Board_RRRR_03.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_04.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The applet will now be used to draw a mechanism with (scaled) link lengths 100, 250, 300, 350, coupler length 250 and orientation of 30 degress, when the crank is at an angle of 70 degrees with the x axis. The link 1 is assumed to be orientedt along the x axis. Click on the Draw tab. Click on the Point tab. Enter the coordinates of joint 1 (0,0). Click the Draw button"> 
+                    <img src='images/Drawing_Board_RRRR_04.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_05.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The point (0,0) appears on the canvas"> 
+                    <img src='images/Drawing_Board_RRRR_05.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_06.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Point tab. Enter the coordinates of joint 4 (100,0) in the X and Y text boxes. Click the Draw button"> 
+                    <img src='images/Drawing_Board_RRRR_06.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_07.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The point (100,0) appears on the canvas"> 
+                    <img src='images/Drawing_Board_RRRR_07.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_08.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Line tab. Choose Point slope form as Mode from the drop down list box. Click the Segment radio button. Enter the coordinates of joint 1 (0,0) in the X and Y boxes. Enter the crank angle (70 degrees)in the Theta box. Enter the (scaled)length of the crank in the Length box."> 
+                    <img src='images/Drawing_Board_RRRR_08.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_09.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="A line representing the crank of (scaled ) length 250 and a slope of 70 degrees appears on screen"> 
+                    <img src='images/Drawing_Board_RRRR_09.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_10.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Measure tab. Click on the Point tab. Double click the mouse at the tip of this line. The coordinates show up in the text boxes as (85,235)."> 
+                    <img src='images/Drawing_Board_RRRR_10.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_11.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Point tab. Enter the coordinates (85,235) in the X and Y text boxes. Click the Draw button."> 
+                    <img src='images/Drawing_Board_RRRR_11.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_12.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The point(85,235) representing the joint 2 appears. Click on the Circle tab. Enter the coordinates (85,235) of joint 2 in the X Center and Y Center text boxes. Enter the (scaled) length of the coupler (300) as Radius. Click on Draw button."> 
+                    <img src='images/Drawing_Board_RRRR_12.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_13.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The circle representing the possible locations of joint 3 appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_13.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_14.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Enter the coordinates (100,0) of joint 4 in the X Center and Y Center text boxes. Enter the (scaled) length of the follower (350) as Radius. Click on Draw button.">
+                    <img src='images/Drawing_Board_RRRR_14.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_15.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The circle representing the locus of joint 3 appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_15.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_16.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The circles intersect at two points, of which the one on the right is chosen. Choosing the one on the left will lead to solution for the crossed assembly mode of the mechanism. Click on the measure tab. Click on the point of intersection on the right. The coordinates (385, 205) show up in the X and Y text boxes."> 
+                    <img src='images/Drawing_Board_RRRR_16.gif' alt=''/></a>
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_17.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Point tab. Enter the coordinates (385,205) in the X and Y text boxes. Click the Draw button. The point (385,205) representing joint 3 appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_17.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_18.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Line tab. Choose the Two point form from the Mode drop down list box. Click the Segment radio button. Enter the coordinates (85,235) and (385,205) in the X1,Y1 and X2,Y2 text boxes."> 
+                    <img src='images/Drawing_Board_RRRR_18.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_19.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The line representing the link 3 appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_19.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_20.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Line tab. Choose the Two point form from the Mode drop down list box. Click the Segment radio button. Enter the coordinates (100,0) and (385,205) in the X1,Y1 and X2,Y2 text boxes. Click the Draw button."> 
+                    <img src='images/Drawing_Board_RRRR_20.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_21.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The line representing link 4 or the follower appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_21.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_22.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Line tab. Choose the Point slope form from the Mode drop down list box. Click the Segment radio button. Enter the coordinates (85,235) in the X,Y text boxes. Enter the length of the coupler arm (250) in the Length text box. Enter the orientation of 30 (degrees) in the Theta text box. Click the Draw button."> 
+                    <img src='images/Drawing_Board_RRRR_22.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_23.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="The line representing coupler arm appears on the canvas."> 
+                    <img src='images/Drawing_Board_RRRR_23.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_24.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Measure tab. Click on the Point tab. Double click the mouse at the tip of this line. The coordinates show up in the text boxes as (300,360)."> 
+                    <img src='images/Drawing_Board_RRRR_24.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_25.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="Click on the Draw tab. Click on the Point tab.  Enter the coordinates (300,360) in the X,Y text boxes. Click the Draw button."> 
+                    <img src='images/Drawing_Board_RRRR_25.gif' alt=''/></a> 
+
+                <a id="thumb1" class='highslide' href='images/Drawing_Board_RRRR_26.gif'
+                   onclick="return hs.expand(this, inPageOptions)" title="This is the schematic representation of the mechanism in the required configuration."> 
+                    <img src='images/Drawing_Board_RRRR_26.gif' alt=''/></a> 
+
+            </div> 
+
+    </body> 
+</html>
