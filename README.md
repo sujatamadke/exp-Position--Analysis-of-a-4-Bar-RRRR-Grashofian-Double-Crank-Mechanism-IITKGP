@@ -7,7 +7,7 @@
 <b>Discipline | <b> Mechanical Engineering 
 :--|:--|
 <b> Lab | <b> **Mechanisms and Robotics Lab**
-<b> Experiment|     <b> **Movemaster and Experiment 1**
+<b> Experiment|     <b> **Position Analysis of a 4 Bar RRRR Grashofian Double Crank Mechanism and Experiment 3**
 
 
 ### About the Experiment 
