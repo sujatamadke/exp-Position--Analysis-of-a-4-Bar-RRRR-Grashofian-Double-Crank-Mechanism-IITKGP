@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script language="JavaScript" type="text/javascript">
+function myFunction() {
+
+    var l1 = document.getElementById("ground").value;
+    var l2 = document.getElementById("crank").value;
+    var l3 = document.getElementById("coupler").value;
+    var l4 = document.getElementById("follower").value;
+    var l5 = document.getElementById("coupler_length").value;
+    var theta5 = document.getElementById("coupler_angle").value;
+    var theta2 = document.getElementById("crank_angle").value;
+    var cx = document.getElementById("coupler_x").value;
+    var cy = document.getElementById("coupler_y").value;
+       
+        var th1=0;
+        var th2=theta2*Math.PI/180.0;
+        var th3;
+        var th4;
+        var th5 = theta5*Math.PI/180.0;
+
+		var err_x;
+		var err_x;
+
+        var A=2*l1*l4*Math.cos(th1)-2*l2*l4*Math.cos(th2);
+        var B=2*l1*l4*Math.sin(th1)-2*l2*l4*Math.sin(th2);
+        var C=l1*l1+l2*l2+l4*l4-l3*l3-2*l1*l2*Math.cos(th1-th2);
+        th4=2*Math.atan2((-B+Math.sqrt(B*B-C*C+A*A)),(C-A));
+        th3=Math.atan2(l1*Math.sin(th1)+l4*Math.sin(th4)-l2*Math.sin(th2),l1*Math.cos(th1)+l4*Math.cos(th4)-l2*Math.cos(th2));
+        x1=l1*Math.cos(th1);
+        y1=l1*Math.sin(th1);
+        x2=l2*Math.cos(th2);
+        y2=l2*Math.sin(th2);
+        x3=x2+l3*Math.cos(th3);
+        y3=y2+l3*Math.sin(th3);
+        x4=x1+l4*Math.cos(th4);
+        y4=y1+l4*Math.sin(th4);
+        x5=x2+l5*Math.cos(th3+th5);
+        y5=y2+l5*Math.sin(th3+th5);
+		
+		err_x = (Math.abs((cx - x5) / x5) * 100);
+		err_y = (Math.abs((cy - y5) / y5) * 100);
+
+		document.getElementById("error_x_straight").innerHTML = "For + Assembly Mode,     Error in X = "+err_x+" %";
+		document.getElementById("error_y_straight").innerHTML = "For + Assembly Mode,     Error in Y = "+err_y+" %";
+
+        th4=2*Math.atan2((-B-Math.sqrt(B*B-C*C+A*A)),(C-A));
+        th3=Math.atan2(l1*Math.sin(th1)+l4*Math.sin(th4)-l2*Math.sin(th2),l1*Math.cos(th1)+l4*Math.cos(th4)-l2*Math.cos(th2));
+        x1=l1*Math.cos(th1);
+        y1=l1*Math.sin(th1);
+        x2=l2*Math.cos(th2);
+        y2=l2*Math.sin(th2);
+        x3=x2+l3*Math.cos(th3);
+        y3=y2+l3*Math.sin(th3);
+        x4=x1+l4*Math.cos(th4);
+        y4=y1+l4*Math.sin(th4);
+        x5=x2+l5*Math.cos(th3+th5);
+        y5=y2+l5*Math.sin(th3+th5);
+
+		err_x = (Math.abs((cx - x5) / x5) * 100);
+		err_y = (Math.abs((cy - y5) / y5) * 100);
+		document.getElementById("error_x_crossed").innerHTML = "For - Assembly Mode,     Error in X = "+err_x+" %";
+		document.getElementById("error_y_crossed").innerHTML = "For - Assembly Mode,     Error in Y = "+err_y+" %";
+
+}
+</script>
+<style type="text/css">
+/**
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style2 {font-family: Verdana, Arial, Helvetica, sans-serif}
+-*/
+</style>
+</head>
+<body>
+<label></label>
+<label><span class="style1">Validate Graphical Analysis for Coupler Position for a Grashofian RRRRR Double Crank Linkage</span><span class="style2"><br />
+Link Length 1 (Ground) :
+<input id="ground" type="number">
+<br />
+Link Length 2 (Crank) :
+<input type="number" id="crank" />
+<br />
+</span></label>
+<span class="style2">
+<label>Link Length 3 (Coupler) :
+<input type="number" id="coupler" />
+</label>
+<label><br />
+Link Length 4 (Follower) :
+<input type="number" id="follower" />
+</label>
+<label><br />
+Coupler Arm Length :
+<input type="number" id="coupler_length" />
+</label>
+<label><br />
+Coupler Arm Orientation (in degrees) :
+<input type="number" id="coupler_angle" />
+</label>
+<br />
+<label></label><label>Coupler X Obtained Graphically:
+<input type="number" id="coupler_x" />
+</label>
+<br />
+<label>Coupler Y Obtained Graphically:
+<input type="number" id="coupler_y" />
+</label>
+<br />
+<label>Crank Orientation (in degrees)  :
+<input type="number" id="crank_angle" />
+</label>
+<label><br />
+</label>
+<input name="submit" type="submit" id="Submit" onclick="myFunction()" value="Check"/>
+</span>
+<p id="error_x_straight"></p>
+<p id="error_y_straight"></p>
+<p id="error_x_crossed"></p>
+<p id="error_y_crossed"></p>
+</body>
+</html>

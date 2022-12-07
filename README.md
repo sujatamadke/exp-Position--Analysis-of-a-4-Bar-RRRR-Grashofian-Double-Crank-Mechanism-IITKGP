@@ -4,13 +4,14 @@
 <img src="experiment/images/iitkgp.png" width="10%">
 </div>
 
+### About the Experiment
 <b>Discipline | <b> Mechanical Engineering 
 :--|:--|
 <b> Lab | <b> **Mechanisms and Robotics Lab**
 <b> Experiment|     <b> **Position Analysis of a 4 Bar RRRR Grashofian Double Crank Mechanism and Experiment 3**
 
 
-### About the Experiment 
+### Subject Matter Expert 
 
 <!--Fill a brief description of this experiment here-->
 
@@ -25,6 +26,7 @@
 
 SrNo | Name | VLabs Developer or Integration Engineer | Designation | Department| Institute
 :--|:--|:--|:--|:--|:--|
-1 | **Mitrajit Samanta** | Integration | Senior Project Officer | Department of Mechanical Engineering | IIT Kharagpur | 
-2 | **Pabitra Kumar Jana** | Integration | Senior Project Officer | Department of Mechanical Engineering | IIT Kharagpur | 
+1 | **Mitrajit Samanta** | Developer and Integration | Senior Project Officer | Department of Mechanical Engineering | IIT Kharagpur | 
+2 | **Pabitra Kumar Jana** | Developer and Integration | Senior Project Officer | Department of Mechanical Engineering | IIT Kharagpur | 
 3 | **Sujata Madke** | Integration | Research Engineer | Department of Mechanical Engineering | IIT Kharagpur | 
+4 | **Prakriti Dhang** | Integration | Project Scientist | Department of Mechanical Engineering | IIT Kharagpur |
